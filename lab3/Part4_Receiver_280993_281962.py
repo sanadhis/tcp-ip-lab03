@@ -17,6 +17,9 @@ mreq = struct.pack('4sL', group, socket.INADDR_ANY)
 s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
 
 while True:
-    data = s.recv(1024)
-    if data:
-        print(data[6:].decode())
+    try:
+        data = s.recv(1024)
+        if data:
+            print(data[6:].decode())
+    except:
+        print("No message received!")

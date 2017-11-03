@@ -24,6 +24,6 @@ while True:
         else:
             break
     except:
-        print()
+        print("No message received!")
 
 ws.close()
