@@ -5,6 +5,7 @@
 > Lab assignments of TCP/IP Course
 
 ## Folder Strucure
+- lab1 - Basic Mininet with Python
 - lab3 - Socket Programming
 
 ## Maintainer
