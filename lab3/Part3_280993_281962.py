@@ -3,7 +3,7 @@ import datetime
 from socket import timeout
 from time import sleep
 
-# Set fixed CMU server and message
+# Set server and message
 HOST    = "lab3.iew.epfl.ch"
 PORT    = 5004
 message = "RESET:20"
@@ -56,6 +56,8 @@ for i in range(n_times):
         except timeout as err:
             print("Timeout: No response, try sending again!")
             continue
+        except:
+            print("No message received!")
         finally:
             # Check if there is a reply or or not            
             if reply:
@@ -66,7 +68,7 @@ for i in range(n_times):
 
     # Add the number of packets loss per iteration
     l_packets.append(counter)
-    # Print response from CMU
+    # Print response from server 
     print("\nResponse: ",response_msg)
     # Print the now date and timestamp
     print(str(datetime.datetime.now()).split('.')[0]+"\n")
@@ -79,3 +81,7 @@ loss_probability = (total_packets-n_times)/total_packets
 print("############# SUMMARY #################")
 print("Avg Packets Before Ack: " + str(avg_packets))
 print("Loss Probability: " + str(loss_probability))
+
+print("\nclosing socket")
+sock_ipv4.close()
+sock_ipv6.close()

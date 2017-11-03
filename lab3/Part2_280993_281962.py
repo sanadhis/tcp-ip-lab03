@@ -1,6 +1,6 @@
 import socket
 
-# Bind socket and establish the TCP connection
+# Bind socket and establish the TCP connection to given server
 HOST = "tcpip.epfl.ch"
 PORT = 5003
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -29,12 +29,17 @@ sock.sendall(message.encode())
 
 # Handle the response
 while True:
-    data = sock.recv(msg_size).decode()
-    if data:
-        counter +=1
-        print ('received:', data)
-    else:
-        break
-
+    try:
+        data = sock.recv(msg_size).decode()
+        if data:
+            counter +=1
+            print ('received:', data)
+        else:
+            break
+    except:
+        print("No message received!")
+        
 # Show recv() invocations
 print("recv() called: ",counter)
+print("\nclosing socket")
+sock.close()
