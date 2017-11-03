@@ -21,5 +21,7 @@ while True:
         data = s.recv(1024)
         if data:
             print(data[6:].decode())
+    except KeyboardInterrupt:
+        break
     except:
         print("No message received!")
