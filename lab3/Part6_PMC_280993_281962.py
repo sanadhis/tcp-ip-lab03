@@ -10,9 +10,7 @@ cert_file = "280993_cert.pem"
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-ssl_socket = ssl.wrap_socket(sock, 
-                            ca_certs=cert_file,
-                            cert_reqs=ssl.CERT_REQUIRED)
+ssl_socket = ssl.wrap_socket(sock, ssl_version=ssl.PROTOCOL_SSLv23)
 
 ssl_socket.connect((HOST,PORT))
 
@@ -30,7 +28,7 @@ if option == 1:
     msg_size = 18
 # For scenario we want the application to receive up to 1024 bytes at once from the socket
 else:
-    message = "CMD_floodme"
+    message  = "CMD_floodme"
     msg_size = 1024    
 
 # sending the message
